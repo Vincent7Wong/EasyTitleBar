@@ -1,7 +1,7 @@
 package com.next.easytitlebardemo.ui.main;
 
-import com.next.easynavigition.constant.Anim;
-import com.next.easynavigition.view.EasyNavigitionBar;
+import com.next.easynavigation.constant.Anim;
+import com.next.easynavigation.view.EasyNavigationBar;
 import com.next.easytitlebardemo.R;
 import com.next.easytitlebardemo.base.BaseActivity;
 import com.next.easytitlebardemo.util.EasyStatusBarUtil;
@@ -17,7 +17,7 @@ import butterknife.BindView;
 public class MainActivity extends BaseActivity {
 
     @BindView(R.id.mNavigitionBar)
-    EasyNavigitionBar mNavigitionBar;
+    EasyNavigationBar mNavigitionBar;
 
 
     private String[] tabText = {"首页", "发现", "消息", "我的"};

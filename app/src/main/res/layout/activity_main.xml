@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.next.easynavigition.view.EasyNavigitionBar
+    <com.next.easynavigation.view.EasyNavigationBar
         android:id="@+id/mNavigitionBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:Easy_navigitionHeight="56dp">
+        app:Easy_navigationHeight="56dp">
 
-    </com.next.easynavigition.view.EasyNavigitionBar>
+    </com.next.easynavigation.view.EasyNavigationBar>
 </android.support.constraint.ConstraintLayout>
