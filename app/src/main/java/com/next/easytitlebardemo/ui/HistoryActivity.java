@@ -1,5 +1,6 @@
 package com.next.easytitlebardemo.ui;
 
+import com.next.easytitlebar.view.EasyTitleBar;
 import com.next.easytitlebardemo.R;
 import com.next.easytitlebardemo.base.BaseActivity;
 
@@ -10,6 +11,7 @@ import butterknife.BindView;
  */
 public class HistoryActivity extends BaseActivity {
 
+    private EasyTitleBar titleBar;
 
     @Override
     protected int getScreenMode() {
@@ -23,7 +25,8 @@ public class HistoryActivity extends BaseActivity {
 
     @Override
     protected void onViewCreated() {
-
+        titleBar = findViewById(R.id.titleBar);
+        titleBar.setBackgroundResource(R.mipmap.e_logo);
     }
 
     @Override

@@ -29,8 +29,8 @@
 
             <ImageView
                 android:id="@+id/left_image"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:scaleType="centerInside"
                 android:src="@drawable/icon_back" />
 

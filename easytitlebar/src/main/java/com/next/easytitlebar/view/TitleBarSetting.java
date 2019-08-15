@@ -36,6 +36,7 @@ public class TitleBarSetting {
     //返回图片的大小
     private int backImageSize = 18;
 
+
     //menu图片大小
     private int menuImgSize = 18;
     //menu文字大小
@@ -135,6 +136,7 @@ public class TitleBarSetting {
     }
 
 
+
     public TitleBarSetting fitSystemWindow(boolean fitSystemWindow) {
         this.fitSystemWindow = fitSystemWindow;
         return this;
@@ -221,4 +223,5 @@ public class TitleBarSetting {
     public boolean isHasStatusPadding() {
         return hasStatusPadding;
     }
+
 }
