@@ -222,16 +222,12 @@ public class EasyTitleBar extends RelativeLayout {
 
             //返回箭头
             Drawable backDrawable = ta.getDrawable(R.styleable.EasyTitleBar_Easy_backRes);
-            if(backRes!=0){
 
-            }else{
-                if (backDrawable != null) {
-                    backImage.setImageDrawable(backDrawable);
-                } else {
-                    backImage.setImageResource(backRes);
-                }
+            if (backDrawable != null) {
+                backImage.setImageDrawable(backDrawable);
+            } else {
+                backImage.setImageResource(backRes);
             }
-
 
 
             //标题栏
@@ -457,6 +453,7 @@ public class EasyTitleBar extends RelativeLayout {
 
     /**
      * 获取整个Title布局
+     *
      * @return
      */
     public LinearLayout getTitleLayout() {
@@ -489,6 +486,7 @@ public class EasyTitleBar extends RelativeLayout {
 
     /**
      * 获取返回图标ImageView
+     *
      * @return
      */
     public ImageView getBackImage() {

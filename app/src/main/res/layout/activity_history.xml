@@ -6,7 +6,7 @@
     android:fitsSystemWindows="true">
 
     <com.next.easytitlebar.view.EasyTitleBar
-        android:id="@+id/titleBar"
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></com.next.easytitlebar.view.EasyTitleBar>
 

@@ -167,7 +167,7 @@ Step 1. Add it in your root build.gradle at the end of repositories:
 ```
 Step 2. Add the dependency
 ```
-	implementation 'com.github.forvv231:EasyTitleBar:1.0.4'
+	implementation 'com.github.forvv231:EasyTitleBar:1.0.5'
 ```
 ######2. Application中设置全局默认配置
 ```

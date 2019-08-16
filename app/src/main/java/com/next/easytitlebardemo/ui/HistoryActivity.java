@@ -1,5 +1,7 @@
 package com.next.easytitlebardemo.ui;
 
+import android.view.View;
+
 import com.next.easytitlebar.view.EasyTitleBar;
 import com.next.easytitlebardemo.R;
 import com.next.easytitlebardemo.base.BaseActivity;
@@ -13,6 +15,8 @@ public class HistoryActivity extends BaseActivity {
 
     private EasyTitleBar titleBar;
 
+    private boolean isSelect;
+
     @Override
     protected int getScreenMode() {
         return 0;
@@ -25,8 +29,19 @@ public class HistoryActivity extends BaseActivity {
 
     @Override
     protected void onViewCreated() {
-        titleBar = findViewById(R.id.titleBar);
-        titleBar.setBackgroundResource(R.mipmap.e_logo);
+        titleBar = findViewById(R.id.title);
+        titleBar.getBackLayout().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isSelect){
+                    titleBar.setBackImageRes(R.mipmap.back_icon);
+                }else{
+                    titleBar.setBackImageRes(R.mipmap.e_logo);
+                }
+                isSelect = !isSelect;
+            }
+        });
+
     }
 
     @Override
