@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/EasyTitleBar-master.iml" filepath="$PROJECT_DIR$/EasyTitleBar-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EasyTitleBar.iml" filepath="$PROJECT_DIR$/EasyTitleBar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/EasyTitleBar-app.iml" filepath="$PROJECT_DIR$/app/EasyTitleBar-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/easytitlebar/easytitlebar.iml" filepath="$PROJECT_DIR$/easytitlebar/easytitlebar.iml" />
     </modules>

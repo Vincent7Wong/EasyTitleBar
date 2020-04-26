@@ -38,7 +38,7 @@ public class TitleBarSetting {
 
 
     //menu图片大小
-    private int menuImgSize = 18;
+    private int menuImgSize = 0;
     //menu文字大小
     private int menuTextSize = 16;
     //menu文字颜色

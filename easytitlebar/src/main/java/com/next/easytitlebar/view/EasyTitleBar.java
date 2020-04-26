@@ -258,7 +258,7 @@ public class EasyTitleBar extends RelativeLayout {
                 }
             }
             titleTextSize = ta.getDimension(R.styleable.EasyTitleBar_Easy_titleSize, titleTextSize);
-            title_tv.setTextSize(EasyUtil.px2sp(context, titleTextSize));
+            title_tv.setTextSize(EasyUtil.px2dip(context, titleTextSize));
             titleColor = ta.getColor(R.styleable.EasyTitleBar_Easy_titleColor, titleColor);
 
             title_tv.setTextColor(titleColor);
@@ -413,7 +413,7 @@ public class EasyTitleBar extends RelativeLayout {
             } else {
                 setTitleStyle(TITLE_STYLE_LEFT);
             }
-
+            initTitleViewWidth();
             ta.recycle();
         }
     }
@@ -576,11 +576,14 @@ public class EasyTitleBar extends RelativeLayout {
             centerConstraintSet.connect(title_tv.getId(), ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM, 0);
             centerConstraintSet.applyTo(fit_cl);
         } else if (style == TITLE_STYLE_LEFT) {
-            leftConstraintSet.connect(title_tv.getId(), ConstraintSet.LEFT, backLayout.getId(), ConstraintSet.RIGHT, 0);
-            leftConstraintSet.setMargin(title_tv.getId(), ConstraintSet.LEFT, 0);
-            leftConstraintSet.setGoneMargin(title_tv.getId(), ConstraintSet.LEFT, (int) parentPadding);
+            if (backLayoutState == 1) {
+                leftConstraintSet.connect(title_tv.getId(), ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT, 0);
+            } else {
+                leftConstraintSet.connect(title_tv.getId(), ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT, EasyUtil.dip2px(getContext(), 15));
+            }
             leftConstraintSet.connect(title_tv.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, 0);
             leftConstraintSet.connect(title_tv.getId(), ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM, 0);
+            leftConstraintSet.clear(title_tv.getId(), ConstraintSet.RIGHT);
             leftConstraintSet.applyTo(fit_cl);
         }
 
@@ -601,6 +604,8 @@ public class EasyTitleBar extends RelativeLayout {
         } else {
             titleLine.setVisibility(GONE);
         }
+
+        initTitleViewWidth();
     }
 
 
@@ -678,7 +683,7 @@ public class EasyTitleBar extends RelativeLayout {
             paddingleft = (int) (titleBar.viewPadding / 2);
             paddingright = (int) (titleBar.viewPadding / 2);
             menuImgSize = titleBar.menuImgSize;
-            menuTextSize = EasyUtil.px2sp(context, titleBar.menuTextSize);
+            menuTextSize = EasyUtil.px2dip(context, titleBar.menuTextSize);
             menuTextColor = titleBar.menuTextColor;
         }
 
@@ -772,7 +777,9 @@ public class EasyTitleBar extends RelativeLayout {
                 imageView.setImageBitmap(null);
             }
             LinearLayout.LayoutParams imageParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            imageParams.width = (int) (menuImgSize + paddingleft + paddingright);
+            if (menuImgSize > 0) {
+                imageParams.width = (int) (menuImgSize + paddingleft + paddingright);
+            }
             imageView.setLayoutParams(imageParams);
             imageView.setPadding(paddingleft, 0, paddingright, 0);
 
@@ -796,10 +803,59 @@ public class EasyTitleBar extends RelativeLayout {
 
     public void addRightView(View view) {
         rightLayout.addView(view, 0);
+        initTitleViewWidth();
+    }
+
+    /**
+     * 重新计算title的宽度
+     */
+    private void initTitleViewWidth() {
+
+        post(new Runnable() {
+            @Override
+            public void run() {
+                if (titleStyle == 0) {
+                    int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+                    rightLayout.measure(w, 0);
+                    int rightLayoutWidth = rightLayout.getMeasuredWidth();
+
+                    int leftW = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+                    leftLayout.measure(leftW, 0);
+                    int leftLayoutWidth = leftLayout.getMeasuredWidth();
+                    int diffWidth = rightLayoutWidth > leftLayoutWidth ? rightLayoutWidth : leftLayoutWidth;
+
+                    int titleWidth = (getWidth() / 2 - diffWidth) * 2;
+                    Log.e("xxx", rightLayoutWidth + "==" + leftLayoutWidth + "==" + getWidth());
+                    ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) title_tv.getLayoutParams();
+                    layoutParams.width = titleWidth;
+                    title_tv.setLayoutParams(layoutParams);
+                } else {
+                    int BW = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+                    backLayout.measure(BW, 0);
+                    int backWidth = backLayout.getMeasuredWidth();
+
+                    int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+                    rightLayout.measure(w, 0);
+                    int rightLayoutWidth = rightLayout.getMeasuredWidth();
+
+                    int titleWidth;
+                    if (backLayoutState == 1) {
+                        titleWidth = (getWidth() - rightLayoutWidth - backWidth);
+                    } else {
+                        titleWidth = (getWidth() - rightLayoutWidth - EasyUtil.dip2px(getContext(), 15));
+                    }
+                    ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) title_tv.getLayoutParams();
+                    layoutParams.width = titleWidth;
+                    title_tv.setLayoutParams(layoutParams);
+                }
+            }
+        });
+
     }
 
     public void addLeftView(View view) {
         leftLayout.addView(view);
+        initTitleViewWidth();
     }
 
     public ImageView addRightImg(int res) {

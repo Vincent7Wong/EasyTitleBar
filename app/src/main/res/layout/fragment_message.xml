@@ -8,7 +8,7 @@
         android:id="@+id/titleBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:Easy_title="消息"
+        app:Easy_title="精准制程的力量 1990年开始以计算机控制铣床，开启前所未有的视经典款经典款(3张)"
         app:Easy_backLayoutState="gone"
         app:Easy_titleStyle="left"
         app:Easy_titleColor="#333333"
