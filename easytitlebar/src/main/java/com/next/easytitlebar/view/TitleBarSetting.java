@@ -50,6 +50,9 @@ public class TitleBarSetting {
     private boolean fitSystemWindow = false;
     private boolean hasStatusPadding = false;
 
+    //占标题栏长度的百分比
+    private int titleWidthPercent = 0;
+
     private TitleBarSetting() {
     }
 
@@ -58,6 +61,11 @@ public class TitleBarSetting {
             setting = new TitleBarSetting();
         }
         return setting;
+    }
+
+    public TitleBarSetting titleWidthPercent(int titleWidthPercent) {
+        this.titleWidthPercent = titleWidthPercent;
+        return this;
     }
 
     public TitleBarSetting lineColor(int lineColor) {
@@ -224,4 +232,8 @@ public class TitleBarSetting {
         return hasStatusPadding;
     }
 
+
+    public int getTitleWidthPercent() {
+        return titleWidthPercent;
+    }
 }

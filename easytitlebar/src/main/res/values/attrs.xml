@@ -92,7 +92,8 @@
         <attr name="Easy_menuTextSize" format="dimension" />
         <!--菜单文字颜色-->
         <attr name="Easy_menuTextColor" format="color" />
-
+        <!--标题文字占总长度的百分比-->
+        <attr name="Easy_titleWidthPercent" format="integer" />
 
     </declare-styleable>
 </resources>

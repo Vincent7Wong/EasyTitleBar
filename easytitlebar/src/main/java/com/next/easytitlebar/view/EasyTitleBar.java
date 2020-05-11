@@ -106,6 +106,7 @@ public class EasyTitleBar extends RelativeLayout {
     private View status_view;
 
     private boolean hasStatusPadding;
+    private int titleWidthPercent;
 
     public EasyTitleBar(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -193,6 +194,7 @@ public class EasyTitleBar extends RelativeLayout {
         lineColor = titleBarSetting.getLineColor();
         fitSystemWindow = titleBarSetting.isFitSystemWindow();
         hasStatusPadding = titleBarSetting.isHasStatusPadding();
+        titleWidthPercent =titleBarSetting.getTitleWidthPercent();
         if (titleBarSetting.getShowLine()) {
             lineState = 1;
         } else {
@@ -229,7 +231,7 @@ public class EasyTitleBar extends RelativeLayout {
                 backImage.setImageResource(backRes);
             }
 
-
+            titleWidthPercent = ta.getInteger(R.styleable.EasyTitleBar_Easy_titleWidthPercent, 0);
             //标题栏
             titleBarHeight = ta.getDimension(R.styleable.EasyTitleBar_Easy_titleBarHeight, titleBarHeight);
             titleBarBackGround = ta.getColor(R.styleable.EasyTitleBar_Easy_titleBarBackground, titleBarBackGround);
@@ -823,9 +825,13 @@ public class EasyTitleBar extends RelativeLayout {
                     leftLayout.measure(leftW, 0);
                     int leftLayoutWidth = leftLayout.getMeasuredWidth();
                     int diffWidth = rightLayoutWidth > leftLayoutWidth ? rightLayoutWidth : leftLayoutWidth;
+                    int titleWidth;
+                    if (titleWidthPercent > 0) {
+                        titleWidth = getWidth() *  titleWidthPercent/100;
+                    } else {
+                        titleWidth = (getWidth() / 2 - diffWidth) * 2;
+                    }
 
-                    int titleWidth = (getWidth() / 2 - diffWidth) * 2;
-                    Log.e("xxx", rightLayoutWidth + "==" + leftLayoutWidth + "==" + getWidth());
                     ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) title_tv.getLayoutParams();
                     layoutParams.width = titleWidth;
                     title_tv.setLayoutParams(layoutParams);
@@ -839,11 +845,17 @@ public class EasyTitleBar extends RelativeLayout {
                     int rightLayoutWidth = rightLayout.getMeasuredWidth();
 
                     int titleWidth;
-                    if (backLayoutState == 1) {
-                        titleWidth = (getWidth() - rightLayoutWidth - backWidth);
+
+                    if (titleWidthPercent > 0) {
+                        titleWidth = getWidth() * titleWidthPercent/100;
                     } else {
-                        titleWidth = (getWidth() - rightLayoutWidth - EasyUtil.dip2px(getContext(), 15));
+                        if (backLayoutState == 1) {
+                            titleWidth = (getWidth() - rightLayoutWidth - backWidth);
+                        } else {
+                            titleWidth = (getWidth() - rightLayoutWidth - EasyUtil.dip2px(getContext(), 15));
+                        }
                     }
+
                     ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) title_tv.getLayoutParams();
                     layoutParams.width = titleWidth;
                     title_tv.setLayoutParams(layoutParams);
