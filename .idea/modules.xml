@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EasyTitleBar.iml" filepath="$PROJECT_DIR$/EasyTitleBar.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/EasyTitleBar-app.iml" filepath="$PROJECT_DIR$/app/EasyTitleBar-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/EasyTitleBarGit.iml" filepath="$PROJECT_DIR$/.idea/modules/EasyTitleBarGit.iml" group="EasyTitleBarGit" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/EasyTitleBarGit-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/EasyTitleBarGit-app.iml" group="EasyTitleBarGit/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/easytitlebar/EasyTitleBarGit-easytitlebar.iml" filepath="$PROJECT_DIR$/.idea/modules/easytitlebar/EasyTitleBarGit-easytitlebar.iml" group="EasyTitleBarGit/easytitlebar" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/easytitlebar/easytitlebar.iml" filepath="$PROJECT_DIR$/easytitlebar/easytitlebar.iml" />
     </modules>

@@ -96,6 +96,7 @@ public class BaseApplication extends Application {
                 .backIconRes(R.mipmap.back_icon)
                 .backgroud(ContextCompat.getColor(this, R.color.white))
                 .titleSize(18)
+                .setTextSizeType(1)
                 .showLine(true)
                 .titleColor(ContextCompat.getColor(this, R.color.common_text_3))
                 .titleBarHeight(52);

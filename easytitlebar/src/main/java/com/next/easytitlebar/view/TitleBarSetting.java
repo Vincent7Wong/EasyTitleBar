@@ -5,14 +5,22 @@ import android.graphics.Color;
 
 import com.next.easytitlebar.R;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 /**
  * Created by Administrator on 2018/6/23.
  */
-
 public class TitleBarSetting {
 
+    //文字单位：1、DP   2、SP
+    public static final int TYPE_DP = 1;
+    public static final int TYPE_SP = 2;
 
     private static TitleBarSetting setting;
+
+    //字体显示为DP还是SP  默认1 为DP 2SP
+    private int textSizeType = 1;
 
     //默认返回图标
     private int back_icon = R.drawable.icon_back;
@@ -144,7 +152,6 @@ public class TitleBarSetting {
     }
 
 
-
     public TitleBarSetting fitSystemWindow(boolean fitSystemWindow) {
         this.fitSystemWindow = fitSystemWindow;
         return this;
@@ -236,4 +243,16 @@ public class TitleBarSetting {
     public int getTitleWidthPercent() {
         return titleWidthPercent;
     }
+
+
+    public int getTextSizeType() {
+        return textSizeType;
+    }
+
+    public TitleBarSetting setTextSizeType(int textSizeType) {
+        this.textSizeType = textSizeType;
+        return this;
+    }
+
+
 }

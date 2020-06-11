@@ -77,6 +77,22 @@ public class EasyUtil {
         return (int) (spValue * fontScale + 0.5f);
     }
 
+    public static int px2ts(Context context, int isDp, float px) {
+        if (isDp == 1) {
+            return px2dip(context, px);
+        } else {
+            return px2sp(context, px);
+        }
+    }
+
+    public static float compareTo(Context context,float dimension, float tabTextSize,int textSizeType) {
+        if(dimension==0){
+            return tabTextSize;
+        }else{
+            return px2ts(context,textSizeType,tabTextSize);
+        }
+    }
+
 
     public static int getColorWithAlpha(float alpha, int baseColor) {
         int a = Math.min(255, Math.max(0, (int) (alpha * 255))) << 24;

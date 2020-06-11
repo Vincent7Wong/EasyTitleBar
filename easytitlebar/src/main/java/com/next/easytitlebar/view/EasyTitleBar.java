@@ -42,6 +42,8 @@ public class EasyTitleBar extends RelativeLayout {
 
     private static TitleBarSetting titleBarSetting;
 
+    //字体显示为DP还是SP  默认1 为DP 2SP
+    private int textSizeType;
     private TextView title_tv;
     private LinearLayout titleLayout;
     private ConstraintLayout fit_cl;
@@ -175,10 +177,13 @@ public class EasyTitleBar extends RelativeLayout {
     private void initSetting() {
         if (titleBarSetting == null)
             return;
+
+        textSizeType  =titleBarSetting.getTextSizeType();
         titleBarBackGround = titleBarSetting.getBackgroud();
 
         backRes = titleBarSetting.getBack_icon();
-        titleTextSize = EasyUtil.sp2px(getContext(), titleBarSetting.getTitleSize());
+
+        titleTextSize = titleBarSetting.getTitleSize();
         titleColor = titleBarSetting.getTitleColor();
         titleBarHeight = EasyUtil.dip2px(getContext(), titleBarSetting.getTitleBarHeight());
 
@@ -188,7 +193,7 @@ public class EasyTitleBar extends RelativeLayout {
         backImageSize = EasyUtil.dip2px(getContext(), titleBarSetting.getBackImageSize());
         menuImgSize = EasyUtil.dip2px(getContext(), titleBarSetting.getMenuImgSize());
         menuTextColor = titleBarSetting.getMenuTextColor();
-        menuTextSize = EasyUtil.sp2px(getContext(), titleBarSetting.getMenuTextSize());
+        menuTextSize =  titleBarSetting.getMenuTextSize();
         titleStyle = titleBarSetting.getTitleStyle();
         lineHeight = titleBarSetting.getLineHeight();
         lineColor = titleBarSetting.getLineColor();
@@ -259,8 +264,10 @@ public class EasyTitleBar extends RelativeLayout {
                     }
                 }
             }
-            titleTextSize = ta.getDimension(R.styleable.EasyTitleBar_Easy_titleSize, titleTextSize);
-            title_tv.setTextSize(EasyUtil.px2dip(context, titleTextSize));
+
+            titleTextSize = EasyUtil.compareTo(getContext(), ta.getDimension(R.styleable.EasyTitleBar_Easy_titleSize, 0), titleTextSize, textSizeType);
+
+            title_tv.setTextSize(textSizeType, titleTextSize);
             titleColor = ta.getColor(R.styleable.EasyTitleBar_Easy_titleColor, titleColor);
 
             title_tv.setTextColor(titleColor);
@@ -276,7 +283,7 @@ public class EasyTitleBar extends RelativeLayout {
             //菜单图标大小
             menuImgSize = ta.getDimension(R.styleable.EasyTitleBar_Easy_menuImgSize, menuImgSize);
             //菜单文字大小
-            menuTextSize = ta.getDimension(R.styleable.EasyTitleBar_Easy_menuTextSize, menuTextSize);
+            menuTextSize = EasyUtil.compareTo(getContext(), ta.getDimension(R.styleable.EasyTitleBar_Easy_menuTextSize, 0), menuTextSize, textSizeType);
             //菜单文字颜色
             menuTextColor = ta.getColor(R.styleable.EasyTitleBar_Easy_menuTextColor, menuTextColor);
 
@@ -541,7 +548,7 @@ public class EasyTitleBar extends RelativeLayout {
      * 设置标题字体大小
      */
     public void setTitleSize(float textSize) {
-        title_tv.setTextSize(textSize);
+        title_tv.setTextSize(textSizeType,textSize);
     }
 
     /**
@@ -679,14 +686,16 @@ public class EasyTitleBar extends RelativeLayout {
         private float menuImgSize;
         private float menuTextSize;
         private int menuTextColor;
+        private int textSizeType;
 
         public MenuBuilder(Context context, EasyTitleBar titleBar) {
             this.context = context;
             paddingleft = (int) (titleBar.viewPadding / 2);
             paddingright = (int) (titleBar.viewPadding / 2);
             menuImgSize = titleBar.menuImgSize;
-            menuTextSize = EasyUtil.px2dip(context, titleBar.menuTextSize);
+            menuTextSize = titleBar.menuTextSize;
             menuTextColor = titleBar.menuTextColor;
+            textSizeType = titleBar.textSizeType;
         }
 
 
@@ -751,7 +760,7 @@ public class EasyTitleBar extends RelativeLayout {
 
             TextView textView = new TextView(context);
             textView.setText(text);
-            textView.setTextSize(menuTextSize);
+            textView.setTextSize(textSizeType,menuTextSize);
             textView.setTextColor(menuTextColor);
             textView.setPadding(paddingleft, 0, paddingright, 0);
             textView.setGravity(Gravity.CENTER);
