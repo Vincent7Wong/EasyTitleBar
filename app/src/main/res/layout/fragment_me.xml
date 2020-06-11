@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/mSrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -207,7 +207,7 @@ I thought I saw a figure standing in the shadows.
 我好像看见阴暗处站着一个人。"
                 android:textSize="15sp" />
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <com.next.easytitlebar.view.EasyTitleBar
         android:id="@+id/titleBar"
@@ -219,4 +219,4 @@ I thought I saw a figure standing in the shadows.
         app:Easy_titleBarBackground="@android:color/transparent"></com.next.easytitlebar.view.EasyTitleBar>
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

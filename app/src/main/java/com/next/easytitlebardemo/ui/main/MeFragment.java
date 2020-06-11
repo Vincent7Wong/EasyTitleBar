@@ -1,49 +1,53 @@
 package com.next.easytitlebardemo.ui.main;
 
 import android.os.Build;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.NestedScrollView;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ScrollView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
+import androidx.fragment.app.Fragment;
 
 import com.next.easytitlebar.utils.EasyUtil;
 import com.next.easytitlebar.view.EasyTitleBar;
 import com.next.easytitlebardemo.R;
-import com.next.easytitlebardemo.base.BaseFragment;
-import com.next.easytitlebardemo.util.EasyStatusBarUtil;
 
-import butterknife.BindView;
 
 /**
  * Created by Administrator on 2018/7/30.
  * 我的
  */
 
-public class MeFragment extends BaseFragment {
+public class MeFragment extends Fragment {
 
-    @BindView(R.id.mSrollView)
-    NestedScrollView mSrollView;
-    @BindView(R.id.titleBar)
-    EasyTitleBar titleBar;
+   private NestedScrollView mSrollView;
+    private EasyTitleBar titleBar;
     private boolean isBlack = false;
 
+
+    @Nullable
     @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_me;
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View mContentView = inflater.inflate(R.layout.fragment_me, null);
+        titleBar = mContentView.findViewById(R.id.titleBar);
+        mSrollView = mContentView.findViewById(R.id.mSrollView);
+
+        initEventAndData();
+
+        return mContentView;
     }
 
-    @Override
-    protected void onViewCreated() {
 
-        initTitleFit();
+
+    private void initEventAndData() {
 
         initTitleBarView();
 
-    }
-
-    @Override
-    protected void initEventAndData() {
         titleBar.setOnDoubleClickListener(new EasyTitleBar.OnDoubleClickListener() {
             @Override
             public void onDoubleEvent(View view) {
@@ -68,11 +72,11 @@ public class MeFragment extends BaseFragment {
                 if (alpha > 0.8) {
                     titleBar.setTitle("我的");
                     titleBar.setTitleColor(ContextCompat.getColor(getContext(), R.color.common_text_3));
-                    EasyStatusBarUtil.StatusBarLightMode(getActivity(), R.color.white, R.color.status_bar_color); //设置白底黑字
+                   // EasyStatusBarUtil.StatusBarLightMode(getActivity(), R.color.white, R.color.status_bar_color); //设置白底黑字
                     isBlack = true;
                 } else {
                     isBlack = false;
-                    EasyStatusBarUtil.StatusBarDarkMode(getActivity(), ((MainActivity) getActivity()).getMode());
+                   // EasyStatusBarUtil.StatusBarDarkMode(getActivity(), ((MainActivity) getActivity()).getMode());
                     titleBar.setTitle("");
                     titleBar.setTitleColor(ContextCompat.getColor(getContext(), R.color.white));
                 }
@@ -80,27 +84,5 @@ public class MeFragment extends BaseFragment {
         });
     }
 
-    private void initTitleFit() {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            titleBar.setHasStatusPadding(true);
-            if (((MainActivity) getActivity()).getMode() == 0) {
-                titleBar.setFitColor(ContextCompat.getColor(getContext(), R.color.status_bar_color));
-            } else {
-                titleBar.setFitColor(ContextCompat.getColor(getContext(), android.R.color.transparent));
-            }
-        }
-
-    }
-
-    @Override
-    public void lazyLoad() {
-        super.lazyLoad();
-        if (isBlack) {
-            EasyStatusBarUtil.StatusBarLightMode(getActivity(), R.color.white, R.color.status_bar_color); //设置白底黑字
-        } else {
-            EasyStatusBarUtil.StatusBarDarkMode(getActivity(), ((MainActivity) getActivity()).getMode());
-        }
-    }
 
 }

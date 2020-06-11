@@ -4,13 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.widget.NestedScrollView;
-import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+
+import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 /**

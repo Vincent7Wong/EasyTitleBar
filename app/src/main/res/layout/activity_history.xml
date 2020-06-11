@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,8 +8,9 @@
     <com.next.easytitlebar.view.EasyTitleBar
         android:id="@+id/title"
         android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:Easy_titleWidthPercent="50"
         app:Easy_title="精准制程的力量 1990年开始以计算机控制铣床，开启前所未有的视经典款经典款(3张)"
         android:layout_height="wrap_content"></com.next.easytitlebar.view.EasyTitleBar>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

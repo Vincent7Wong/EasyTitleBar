@@ -10,8 +10,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
-import android.support.constraint.ConstraintLayout;
-import android.support.constraint.ConstraintSet;
 import android.text.TextUtils;
 import android.transition.TransitionManager;
 import android.util.AttributeSet;
@@ -28,6 +26,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.next.easytitlebar.R;
 import com.next.easytitlebar.utils.EasyUtil;

@@ -1,60 +1,48 @@
 package com.next.easytitlebardemo.ui.main;
 
-import android.graphics.Color;
 import android.os.Build;
-import android.support.v4.content.ContextCompat;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.next.easytitlebar.view.EasyTitleBar;
 import com.next.easytitlebardemo.R;
-import com.next.easytitlebardemo.base.BaseFragment;
-import com.next.easytitlebardemo.util.EasyStatusBarUtil;
 
-import butterknife.BindView;
 
 /**
  * Created by Administrator on 2018/7/30.
  * 消息
  */
 
-public class MessageFragment extends BaseFragment {
+public class MessageFragment extends Fragment {
 
-    @BindView(R.id.titleBar)
-    EasyTitleBar titleBar;
+   private EasyTitleBar titleBar;
 
-
+    @Nullable
     @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_message;
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View mContentView = inflater.inflate(R.layout.fragment_message, null);
+        titleBar = mContentView.findViewById(R.id.titleBar);
+
+        initEventAndData();
+
+        return mContentView;
     }
 
-    @Override
-    protected void onViewCreated() {
+    private void initEventAndData() {
 
-        initTitleFit();
 
         initTitleBarView();
 
     }
 
-    @Override
-    protected void initEventAndData() {
-
-    }
-
-
-    private void initTitleFit() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            titleBar.setHasStatusPadding(true);
-            if (((MainActivity) getActivity()).getMode() == 0) {
-                titleBar.setFitColor(ContextCompat.getColor(getContext(), R.color.status_bar_color));
-            } else {
-                titleBar.setFitColor(ContextCompat.getColor(getContext(), R.color.white));
-            }
-        }
-    }
 
     private void initTitleBarView() {
         //Java代码添加稍复杂view
@@ -81,12 +69,6 @@ public class MessageFragment extends BaseFragment {
             }
         });
 
-    }
-
-    @Override
-    public void lazyLoad() {
-        super.lazyLoad();
-        EasyStatusBarUtil.StatusBarLightMode(getActivity(), R.color.white, R.color.status_bar_color); //设置白底黑字
     }
 
 }
